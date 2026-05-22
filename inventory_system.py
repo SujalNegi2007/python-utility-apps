@@ -61,6 +61,7 @@ while True:
                             choice2 = int(choice2)
                             if int(choice2) <= store_collection_system[User_input]["Stock"]:
                                 customer_cart_system[a][2] += choice2
+                                store_collection_system[User_input]["Stock"] -= choice2
                             elif int(choice2) > store_collection_system[User_input]["Stock"]:
                                 print("Sorry! We are running low on stocks!")
                         else:
@@ -69,7 +70,12 @@ while True:
                         choice2 = input(f"Enter the amount you want to change with {customer_cart_system[a][2]}: ")
                         choice2 = int(choice2)
                         if choice2 <= store_collection_system[User_input]["Stock"]:
-                            customer_cart_system[a][2] = int(choice2)
+                            if choice2 >= customer_cart_system[a][2]:
+                                customer_cart_system[a][2] = int(choice2)
+                            else:
+                                refund_stock = customer_cart_system[a][2] - int(choice2)
+                                store_collection_system[User_input]["Stock"] += refund_stock
+                                customer_cart_system[a][2] = int(choice2)
                         elif choice2 > store_collection_system[User_input]["Stock"]:
                             print("Sorry! We are running low on stocks!")
                         else:
