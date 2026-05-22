@@ -52,11 +52,11 @@ while True:
                     a = row
                     break
             if found:
-                choice = input(f"{store_collection_system[User_input]["Product Name"]} is already in cart! Do you want to change the quantity or to add the quantity of {store_collection_system[User_input]["Product Name"]}? If yes then Enter yes if no then Enter no: ").capitalize().strip()
+                choice = input(f"{store_collection_system[User_input]["Product Name"]} is already in cart! Do you want to increase/decrease the quantity or to add more quantity of {store_collection_system[User_input]["Product Name"]}? If yes then Enter yes if no then Enter no: ").capitalize().strip()
                 if choice == "Yes":
                     choice1 = input(f"If you want to add the quantity of {store_collection_system[User_input]["Product Name"]} then Enter add: \nIf you want to change the quantity of {store_collection_system[User_input]["Product Name"]} then Enter change: ").capitalize().strip()
                     if choice1 == "Add":
-                        choice2 = input("Enter how much quantity do you want to add: ")
+                        choice2 = input(f"Enter how much quantity do you want to add more in your existing cart containing {customer_cart_system[a][2]} {customer_cart_system[a][1]}. Enter the number by which you want to increase your stock by: ")
                         if choice2.isdigit():
                             choice2 = int(choice2)
                             if int(choice2) <= store_collection_system[User_input]["Stock"]:
@@ -132,3 +132,4 @@ while True:
             print(f"{menu} is not in options! Please Enter b/w 1 to 5.")
     except:
         print("Only integers are allowed!")
+        
