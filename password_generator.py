@@ -63,20 +63,24 @@ while True:
                     else:
                         print("Only Yes and no are available")
 #-------------------------------------------------------------------------------------------
-                password_len = int(input("What Should Be The Length of Password: "))
-                if uppercase_type == "Yes" or lowercase_type == "Yes" or number_type == "Yes" or special_type == "Yes" and password_len != 0:
-                    for i in range(password_len):
-                        characters.append(random.choice(pool))
-                    random.shuffle(characters)
-                    password = "".join(characters)
-                    History.append(password)
-                else:
-                    print("You didn't choose any options to make password! The password is not created!")
+                try:
+                    password_len = int(input("Enter the password length:"))
+                    if pool != "" and password_len != 0:
+                        for i in range(password_len):
+                            characters.append(random.choice(pool))
+                        random.shuffle(characters)
+                        password = "".join(characters)
+                        History.append(password)
+                        print(f"Your password is {password}.")
+                    else:
+                        print("You didn't choose any options to make password! The password is not created!")
+                except:
+                    print("Invalid Input! Error 104")
 #-------------------------------------------------------------------------------------------
             except:
-                print("Invalid Input!")
+                print("Invalid Input! Error 103")
         elif menu == 2:
-            print("Loading resources...\nLoading resources...\nLoading resources...")
+            print("Loading resources...\nFleching data...")
             print("Presenting the password histories...")
             for i in History:
                 print(f"Password =>{i} ")
