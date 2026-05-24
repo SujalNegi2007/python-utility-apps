@@ -1,4 +1,97 @@
 #Currency Converter
+def menu4(a,b):
+    currency1,currency2 = User_selected_choice(a, b)
+    if a == b:
+        c = 1
+    elif a == 1:
+        if b == 2:
+            c = 0.010449
+        elif b == 3:
+            c = 0.0090
+        elif b == 4:
+            c = 1.66
+        elif b == 5:
+            c = 0.0078
+        elif b == 6:
+            c = 0.071
+    elif a == 2:
+        if b == 1:
+            c = 95.70
+        elif b == 3:
+            c = 0.86
+        elif b == 4:
+            c = 159.20
+        elif b == 5:
+            c = 0.74
+        elif b == 6:
+            c = 6.79
+    elif a == 3:
+        if b == 1:
+            c = 111.47
+        elif b == 2:
+            c = 1.16
+        elif b == 4:
+            c = 184.82
+        elif b == 5:
+            c = 0.86
+        elif b == 6:
+            c = 7.89
+    elif a == 4:
+        if b == 1:
+            c = 0.60
+        elif b == 2:
+            c = 0.0063
+        elif b == 3:
+            c = 0.0054
+        elif b == 5:
+            c = 0.0047
+        elif b == 6:
+            c = 0.043
+    elif a == 5:
+        if b == 1:
+            c = 128.75
+        elif b == 2:
+            c = 1.34
+        elif b == 3:
+            c = 1.16
+        elif b == 4:
+            c = 213.93
+        elif b == 6:
+            c = 9.13
+    elif a == 6:
+        if b == 1:
+            c = 14.13
+        elif b == 2:
+            c = 0.15
+        elif b == 3:
+            c = 0.13
+        elif b == 4:
+            c = 23.43
+        elif b == 5:
+            c = 0.11
+        
+    while True:
+        yes_no = input(f"Are You Sure You want to convert{currency1} to {currency2}(yes/no)?\n").capitalize().strip()
+        if yes_no == "Yes":
+            try:
+                currency = input(f"Enter the amount of {currency1} you want to convert: ")
+                try:
+                    currency = float(currency)
+                    total_currency = currency * c
+                    History[First_name].append(f"{First_name} converted {currency} {currency1} to {total_currency} {currency2}")
+                    print(History)
+                    Condition_while_exit_menu_3 = True
+                    break
+                except:
+                    print("Invalid Input! Error: 555")
+            except:
+                print("Invalid Input!")
+        elif yes_no == "No":
+            Condition_while_exit_menu_3 = True
+            break
+        else:
+            print("Only Yes And No Are Avaliable Options")
+    return
 def image():
     print("\n+-------------------------------------------------------------------------------------+\n| If you want to convert your currency from Indian Rupee to Indian Rupee  : Enter [1] |\n| If you want to convert your currency from Indian Rupee to U.S. Dollar   : Enter [2] |\n| If you want to convert your currency from Indian Rupee to Euro          : Enter [3] |\n| If you want to convert your currency from Indian Rupee to Japanese Yen  : Enter [4] |\n| If you want to convert your currency from Indian Rupee to British Pound : Enter [5] |\n| If you want to convert your currency from Indian Rupee to Chinese Yuan  : Enter [6] |\n| To Exit This Menu                                                       : Enter [7] |\n+-------------------------------------------------------------------------------------+\n")
     return
@@ -91,15 +184,48 @@ def User_selected_choice(a,b):
         elif b == 6:
             User_selected_choice2 = "Chinese Yuans"
     return User_selected_choice1, User_selected_choice2
-print("Welcome to the Currency Converter!")
+def main_menu3(option1):
+    Condition_while_exit_menu_3 = False
+    list_menu_3b_condition  = False
+    list_menu_3a = (1,2,3,4,5,6)
+    list_menu_3b = (7,)
+    def menu3():
+        nonlocal option1, list_menu_3a, Condition_while_exit_menu_3, list_menu_3b, list_menu_3b_condition 
+        print("Select the currency you want to convert into!")
+        image()
+        option2 = input()
+        if option2.isdigit():
+            option2 = int(option2)
+            if option2 in list_menu_3a:
+                if option2 == 1:
+                    menu4(option1,option2)
+                elif option2 == 2:
+                    menu4(option1,option2)
+                elif option2 == 3:
+                    menu4(option1,option2)
+                elif option2 == 4:
+                    menu4(option1,option2)
+                elif option2 == 5:
+                    menu4(option1,option2)
+                elif option2 == 6:
+                    menu4(option1,option2)
+            elif option2 in list_menu_3b:
+                print("Exiting...")
+                list_menu_3b_condition = True
+        else:
+            print("Only interger b/w 1 to 7 are allowed!")
+        return
+    menu3()
+    return list_menu_3b_condition
+#---------------------------------------------------------------------------------------------------------------
 History = {}
-list_menu_3a = (1,2,3,4,5,6)
-list_menu_3b =(7,)
-Condition = False
-Condition_while_exit_menu_1 = False
-Condition_while_exit_menu_2 = False
-Condition_while_exit_menu_3 = False
+print("Welcome to the Currency Converter!")
 while True:
+    Condition = False
+    Condition_while_exit_menu_1 = False
+    Condition_while_exit_menu_2 = False
+    Condition_while_exit_menu_3 = False
+    list_menu_3b_condition = False
     User_name = input("Enter Your Full Name: ").capitalize().strip()
     Name_parts = User_name.split(" ")
     Surname = Name_parts[-1]
@@ -124,217 +250,49 @@ while True:
                                     option1 = int(option1)
 #-------------------------------------------------------------------------------------------------
                                     if option1 == 1:
-                                        print("Select the currency you want to convert into!")
-                                        image()
-                                        option2 = input()
-                                        if option2.isdigit():
-                                            option2 = int(option2)
-                                            if option2 in list_menu_3a:
-                                                currency1,currency2 = User_selected_choice(option,option2)
-                                                while True:
-                                                    yes_no = input(f"Are You Sure You want to convert {currency1} to {currency2}(yes/no)?\n").capitalize().strip()
-                                                    if yes_no == "Yes":
-                                                        try:
-                                                            currency = input(f"Enter the amount of {currency1} you want to convert: ")
-                                                            try:
-                                                                total_currency = currency * 1
-                                                                History[First_name].append(f"{First_name} converted {currency} {currency1} to {total_currency} {currency2}")
-                                                                print(History)
-                                                                Condition_while_exit_menu_3 = True
-                                                                break
-                                                            except:
-                                                                print("Invalid Input! Error: 555")
-                                                        except:
-                                                             print("Invalid Input!")
-                                                    elif yes_no == "No":
-                                                        Condition_while_exit_menu_3 = True
-                                                        break
-                                                    else:
-                                                        print("Only Yes And No Are Avaliable Options")
-                                            elif option2 in list_menu_3b:
-                                                print("Exiting...")
-                                                break
-                                        else:
-                                            print("Only interger b/w 1 to 7 are allowed!")
+                                        main_menu3(option1)
+                                        is_exit = list_menu_3b_condition
+                                        if is_exit:
+                                            break
 #-------------------------------------------------------------------------------------------------
                                     elif option1 == 2:
-                                        print("Select the currency you want to convert into!")
-                                        image()
-                                        option2 = input()
-                                        if option2.isdigit():
-                                            option2 = int(option2)
-                                            if option2 in list_menu_3a:
-                                                currency1,currency2 = User_selected_choice(option,option2)
-                                                while True:
-                                                    yes_no = input(f"Are You Sure You want to convert {currency1} to {currency2}(yes/no)?\n").capitalize().strip()
-                                                    if yes_no == "Yes":
-                                                        try:
-                                                            currency = input(f"Enter the amount of {currency1} you want to convert: ")
-                                                            try:
-                                                                total_currency = currency * 1
-                                                                History[First_name].append(f"{First_name} converted {currency} {currency1} to {total_currency} {currency2}")
-                                                                print(History)
-                                                                Condition_while_exit_menu_3 = True
-                                                                break
-                                                            except:
-                                                                print("Invalid Input! Error: 555")
-                                                        except:
-                                                             print("Invalid Input!")
-                                                    elif yes_no == "No":
-                                                        Condition_while_exit_menu_3 = True
-                                                        break
-                                                    else:
-                                                        print("Only Yes And No Are Avaliable Options")
-                                            elif option2 in list_menu_3b:
-                                                print("Exiting...")
-                                                break
-                                        else:
-                                            print("Only interger b/w 1 to 7 are allowed!")
+                                        main_menu3(option1)
+                                        is_exit = list_menu_3b_condition
+                                        if is_exit:
+                                            break
 #-------------------------------------------------------------------------------------------------
                                     elif option1 == 3:
-                                        print("Select the currency you want to convert into!")
-                                        image()
-                                        option2 = input()
-                                        if option2.isdigit():
-                                            option2 = int(option2)
-                                            if option2 in list_menu_3a:
-                                                currency1,currency2 = User_selected_choice(option,option2)
-                                                while True:
-                                                    yes_no = input(f"Are You Sure You want to convert {currency1} to {currency2}(yes/no)?\n").capitalize().strip()
-                                                    if yes_no == "Yes":
-                                                        try:
-                                                            currency = input(f"Enter the amount of {currency1} you want to convert: ")
-                                                            try:
-                                                                total_currency = currency * 1
-                                                                History[First_name].append(f"{First_name} converted {currency} {currency1} to {total_currency} {currency2}")
-                                                                print(History)
-                                                                Condition_while_exit_menu_3 = True
-                                                                break
-                                                            except:
-                                                                print("Invalid Input! Error: 555")
-                                                        except:
-                                                             print("Invalid Input!")
-                                                    elif yes_no == "No":
-                                                        Condition_while_exit_menu_3 = True
-                                                        break
-                                                    else:
-                                                        print("Only Yes And No Are Avaliable Options")
-                                            elif option2 in list_menu_3b:
-                                                print("Exiting...")
-                                                break
-                                        else:
-                                            print("Only interger b/w 1 to 7 are allowed!")
+                                        main_menu3(option1)
+                                        is_exit = list_menu_3b_condition
+                                        if is_exit:
+                                            break
 #-------------------------------------------------------------------------------------------------
                                     elif option1 == 4:
-                                        print("Select the currency you want to convert into!")
-                                        image()
-                                        option2 = input()
-                                        if option2.isdigit():
-                                            option2 = int(option2)
-                                            if option2 in list_menu_3a:
-                                                currency1,currency2 = User_selected_choice(option,option2)
-                                                while True:
-                                                    yes_no = input(f"Are You Sure You want to convert {currency1} to {currency2}(yes/no)?\n").capitalize().strip()
-                                                    if yes_no == "Yes":
-                                                        try:
-                                                            currency = input(f"Enter the amount of {currency1} you want to convert: ")
-                                                            try:
-                                                                total_currency = currency * 1
-                                                                History[First_name].append(f"{First_name} converted {currency} {currency1} to {total_currency} {currency2}")
-                                                                print(History)
-                                                                Condition_while_exit_menu_3 = True
-                                                                break
-                                                            except:
-                                                                print("Invalid Input! Error: 555")
-                                                        except:
-                                                             print("Invalid Input!")
-                                                    elif yes_no == "No":
-                                                        Condition_while_exit_menu_3 = True
-                                                        break
-                                                    else:
-                                                        print("Only Yes And No Are Avaliable Options")
-                                            elif option2 in list_menu_3b:
-                                                print("Exiting...")
-                                                break
-                                        else:
-                                            print("Only interger b/w 1 to 7 are allowed!")
+                                        main_menu3(option1)
+                                        is_exit = list_menu_3b_condition
+                                        if is_exit:
+                                            break
 #-------------------------------------------------------------------------------------------------
                                     elif option1 == 5:
-                                        print("Select the currency you want to convert into!")
-                                        image()
-                                        option2 = input()
-                                        if option2.isdigit():
-                                            option2 = int(option2)
-                                            if option2 in list_menu_3a:
-                                                currency1,currency2 = User_selected_choice(option,option2)
-                                                while True:
-                                                    yes_no = input(f"Are You Sure You want to convert {currency1} to {currency2}(yes/no)?\n").capitalize().strip()
-                                                    if yes_no == "Yes":
-                                                        try:
-                                                            currency = input(f"Enter the amount of {currency1} you want to convert: ")
-                                                            try:
-                                                                total_currency = currency * 1
-                                                                History[First_name].append(f"{First_name} converted {currency} {currency1} to {total_currency} {currency2}")
-                                                                print(History)
-                                                                Condition_while_exit_menu_3 = True
-                                                                break
-                                                            except:
-                                                                print("Invalid Input! Error: 555")
-                                                        except:
-                                                             print("Invalid Input!")
-                                                    elif yes_no == "No":
-                                                        Condition_while_exit_menu_3 = True
-                                                        break
-                                                    else:
-                                                        print("Only Yes And No Are Avaliable Options")
-                                            elif option2 in list_menu_3b:
-                                                print("Exiting...")
-                                                break
-                                        else:
-                                            print("Only interger b/w 1 to 7 are allowed!")
+                                        main_menu3(option1)
+                                        is_exit = list_menu_3b_condition
+                                        if is_exit:
+                                            break
 #-------------------------------------------------------------------------------------------------
                                     elif option1 == 6:
-                                        print("Select the currency you want to convert into!")
-                                        image()
-                                        option2 = input()
-                                        if option2.isdigit():
-                                            option2 = int(option2)
-                                            if option2 in list_menu_3a:
-                                                currency1,currency2 = User_selected_choice(option,option2)
-                                                while True:
-                                                    yes_no = input(f"Are You Sure You want to convert {currency1} to {currency2}(yes/no)?\n").capitalize().strip()
-                                                    if yes_no == "Yes":
-                                                        try:
-                                                            currency = input(f"Enter the amount of {currency1} you want to convert: ")
-                                                            try:
-                                                                total_currency = currency * 1
-                                                                History[First_name].append(f"{First_name} converted {currency} {currency1} to {total_currency} {currency2}")
-                                                                print(History)
-                                                                Condition_while_exit_menu_3 = True
-                                                                break
-                                                            except:
-                                                                print("Invalid Input! Error: 555")
-                                                        except:
-                                                             print("Invalid Input!")
-                                                    elif yes_no == "No":
-                                                        Condition_while_exit_menu_3 = True
-                                                        break
-                                                    else:
-                                                        print("Only Yes And No Are Avaliable Options")
-                                            elif option2 in list_menu_3b:
-                                                print("Exiting...")
-                                                break
-                                        else:
-                                            print("Only interger b/w 1 to 7 are allowed!")
+                                        main_menu3(option1)
+                                        is_exit = list_menu_3b_condition
+                                        if is_exit:
+                                            break
 #-------------------------------------------------------------------------------------------------
                                     elif option1 == 7:
                                         while True:
-                                            yes_no = input("Do you want to exit(yes/no)?\n").capitalize().strip()
-                                            if yes_no == "Yes":
+                                            yes_no1 = input("Do you want to exit(yes/no)?\n").capitalize().strip()
+                                            if yes_no1 == "Yes":
                                                 print("Exiting...")
                                                 Condition_while_exit_menu_2 = True
                                                 break
-                                            elif yes_no == "No":
+                                            elif yes_no1 == "No":
                                                 print("Staying...")
                                                 break
                                             else:
@@ -374,18 +332,19 @@ while True:
 #_________________________________________________________________________________________________
                     elif option == 4:
                         while True:
-                            yes_no = input("Are You Sure You Want To Exit This Beautiful System(yes/no)?\n").capitalize().split()
-                            if yes_no == "Yes": 
+                            yes_no2 = input("Are You Sure You Want To Exit This Beautiful System(yes/no)?\n").capitalize().strip()
+                            if yes_no2 == "Yes": 
                                 print("Thank you for visiting my code!")
-                                print("Exiting...")
+                                print("Exiting...\n")
                                 Condition_while_exit_menu_1 = True
                                 break
-                            elif yes_no == "No":
+                            elif yes_no2 == "No":
                                 print("Thanks for staying!")
                                 break
                             else:
                                 print("Only Avaliable Options Are Yes And No!")
                         if Condition_while_exit_menu_1:
+                            Condition_while_exit_menu_1 = False
                             break
                     else:
                         print("Only Avaliable Options Are b/w 1 to 4.")
@@ -412,208 +371,40 @@ while True:
                                     option1 = int(option1)
 #-------------------------------------------------------------------------------------------------
                                     if option1 == 1:
-                                        print("Select the currency you want to convert into!")
-                                        image()
-                                        option2 = input()
-                                        if option2.isdigit():
-                                            option2 = int(option2)
-                                            if option2 in list_menu_3a:
-                                                currency1,currency2 = User_selected_choice(option,option2)
-                                                while True:
-                                                    yes_no = input(f"Are You Sure You want to convert {currency1} to {currency2}(yes/no)?\n").capitalize().strip()
-                                                    if yes_no == "Yes":
-                                                        try:
-                                                            currency = input(f"Enter the amount of {currency1} you want to convert: ")
-                                                            try:
-                                                                total_currency = currency * 1
-                                                                History[First_name].append(f"{First_name} converted {currency} {currency1} to {total_currency} {currency2}")
-                                                                print(History)
-                                                                Condition_while_exit_menu_3 = True
-                                                                break
-                                                            except:
-                                                                print("Invalid Input! Error: 555")
-                                                        except:
-                                                             print("Invalid Input!")
-                                                    elif yes_no == "No":
-                                                        Condition_while_exit_menu_3 = True
-                                                        break
-                                                    else:
-                                                        print("Only Yes And No Are Avaliable Options")
-                                            elif option2 in list_menu_3b:
-                                                print("Exiting...")
-                                                break
-                                        else:
-                                            print("Only interger b/w 1 to 7 are allowed!")
+                                        main_menu3(option1)
+                                        is_exit = list_menu_3b_condition
+                                        if is_exit:
+                                            break
 #-------------------------------------------------------------------------------------------------
                                     elif option1 == 2:
-                                        print("Select the currency you want to convert into!")
-                                        image()
-                                        option2 = input()
-                                        if option2.isdigit():
-                                            option2 = int(option2)
-                                            if option2 in list_menu_3a:
-                                                currency1,currency2 = User_selected_choice(option,option2)
-                                                while True:
-                                                    yes_no = input(f"Are You Sure You want to convert {currency1} to {currency2}(yes/no)?\n").capitalize().strip()
-                                                    if yes_no == "Yes":
-                                                        try:
-                                                            currency = input(f"Enter the amount of {currency1} you want to convert: ")
-                                                            try:
-                                                                total_currency = currency * 1
-                                                                History[First_name].append(f"{First_name} converted {currency} {currency1} to {total_currency} {currency2}")
-                                                                print(History)
-                                                                Condition_while_exit_menu_3 = True
-                                                                break
-                                                            except:
-                                                                print("Invalid Input! Error: 555")
-                                                        except:
-                                                             print("Invalid Input!")
-                                                    elif yes_no == "No":
-                                                        Condition_while_exit_menu_3 = True
-                                                        break
-                                                    else:
-                                                        print("Only Yes And No Are Avaliable Options")
-                                            elif option2 in list_menu_3b:
-                                                print("Exiting...")
-                                                break
-                                        else:
-                                            print("Only interger b/w 1 to 7 are allowed!")
+                                        main_menu3(option1)
+                                        is_exit = list_menu_3b_condition
+                                        if is_exit:
+                                            break
 #-------------------------------------------------------------------------------------------------
                                     elif option1 == 3:
-                                        print("Select the currency you want to convert into!")
-                                        image()
-                                        option2 = input()
-                                        if option2.isdigit():
-                                            option2 = int(option2)
-                                            if option2 in list_menu_3a:
-                                                currency1,currency2 = User_selected_choice(option,option2)
-                                                while True:
-                                                    yes_no = input(f"Are You Sure You want to convert {currency1} to {currency2}(yes/no)?\n").capitalize().strip()
-                                                    if yes_no == "Yes":
-                                                        try:
-                                                            currency = input(f"Enter the amount of {currency1} you want to convert: ")
-                                                            try:
-                                                                total_currency = currency * 1
-                                                                History[First_name].append(f"{First_name} converted {currency} {currency1} to {total_currency} {currency2}")
-                                                                print(History)
-                                                                Condition_while_exit_menu_3 = True
-                                                                break
-                                                            except:
-                                                                print("Invalid Input! Error: 555")
-                                                        except:
-                                                             print("Invalid Input!")
-                                                    elif yes_no == "No":
-                                                        Condition_while_exit_menu_3 = True
-                                                        break
-                                                    else:
-                                                        print("Only Yes And No Are Avaliable Options")
-                                            elif option2 in list_menu_3b:
-                                                print("Exiting...")
-                                                break
-                                        else:
-                                            print("Only interger b/w 1 to 7 are allowed!")
+                                        main_menu3(option1)
+                                        is_exit = list_menu_3b_condition
+                                        if is_exit:
+                                            break
 #-------------------------------------------------------------------------------------------------
                                     elif option1 == 4:
-                                        print("Select the currency you want to convert into!")
-                                        image()
-                                        option2 = input()
-                                        if option2.isdigit():
-                                            option2 = int(option2)
-                                            if option2 in list_menu_3a:
-                                                currency1,currency2 = User_selected_choice(option,option2)
-                                                while True:
-                                                    yes_no = input(f"Are You Sure You want to convert {currency1} to {currency2}(yes/no)?\n").capitalize().strip()
-                                                    if yes_no == "Yes":
-                                                        try:
-                                                            currency = input(f"Enter the amount of {currency1} you want to convert: ")
-                                                            try:
-                                                                total_currency = currency * 1
-                                                                History[First_name].append(f"{First_name} converted {currency} {currency1} to {total_currency} {currency2}")
-                                                                print(History)
-                                                                Condition_while_exit_menu_3 = True
-                                                                break
-                                                            except:
-                                                                print("Invalid Input! Error: 555")
-                                                        except:
-                                                             print("Invalid Input!")
-                                                    elif yes_no == "No":
-                                                        Condition_while_exit_menu_3 = True
-                                                        break
-                                                    else:
-                                                        print("Only Yes And No Are Avaliable Options")
-                                            elif option2 in list_menu_3b:
-                                                print("Exiting...")
-                                                break
-                                        else:
-                                            print("Only interger b/w 1 to 7 are allowed!")
+                                        main_menu3(option1)
+                                        is_exit = list_menu_3b_condition
+                                        if is_exit:
+                                            break
 #-------------------------------------------------------------------------------------------------
                                     elif option1 == 5:
-                                        print("Select the currency you want to convert into!")
-                                        image()
-                                        option2 = input()
-                                        if option2.isdigit():
-                                            option2 = int(option2)
-                                            if option2 in list_menu_3a:
-                                                currency1,currency2 = User_selected_choice(option,option2)
-                                                while True:
-                                                    yes_no = input(f"Are You Sure You want to convert {currency1} to {currency2}(yes/no)?\n").capitalize().strip()
-                                                    if yes_no == "Yes":
-                                                        try:
-                                                            currency = input(f"Enter the amount of {currency1} you want to convert: ")
-                                                            try:
-                                                                total_currency = currency * 1
-                                                                History[First_name].append(f"{First_name} converted {currency} {currency1} to {total_currency} {currency2}")
-                                                                print(History)
-                                                                Condition_while_exit_menu_3 = True
-                                                                break
-                                                            except:
-                                                                print("Invalid Input! Error: 555")
-                                                        except:
-                                                             print("Invalid Input!")
-                                                    elif yes_no == "No":
-                                                        Condition_while_exit_menu_3 = True
-                                                        break
-                                                    else:
-                                                        print("Only Yes And No Are Avaliable Options")
-                                            elif option2 in list_menu_3b:
-                                                print("Exiting...")
-                                                break
-                                        else:
-                                            print("Only interger b/w 1 to 7 are allowed!")
+                                        main_menu3(option1)
+                                        is_exit = list_menu_3b_condition
+                                        if is_exit:
+                                            break
 #-------------------------------------------------------------------------------------------------
                                     elif option1 == 6:
-                                        print("Select the currency you want to convert into!")
-                                        image()
-                                        option2 = input()
-                                        if option2.isdigit():
-                                            option2 = int(option2)
-                                            if option2 in list_menu_3a:
-                                                currency1,currency2 = User_selected_choice(option,option2)
-                                                while True:
-                                                    yes_no = input(f"Are You Sure You want to convert {currency1} to {currency2}(yes/no)?\n").capitalize().strip()
-                                                    if yes_no == "Yes":
-                                                        try:
-                                                            currency = input(f"Enter the amount of {currency1} you want to convert: ")
-                                                            try:
-                                                                total_currency = currency * 1
-                                                                History[First_name].append(f"{First_name} converted {currency} {currency1} to {total_currency} {currency2}")
-                                                                print(History)
-                                                                Condition_while_exit_menu_3 = True
-                                                                break
-                                                            except:
-                                                                print("Invalid Input! Error: 555")
-                                                        except:
-                                                             print("Invalid Input!")
-                                                    elif yes_no == "No":
-                                                        Condition_while_exit_menu_3 = True
-                                                        break
-                                                    else:
-                                                        print("Only Yes And No Are Avaliable Options")
-                                            elif option2 in list_menu_3b:
-                                                print("Exiting...")
-                                                break
-                                        else:
-                                            print("Only interger b/w 1 to 7 are allowed!")
+                                        main_menu3(option1)
+                                        is_exit = list_menu_3b_condition
+                                        if is_exit:
+                                            break
 #-------------------------------------------------------------------------------------------------
                                     elif option1 == 7:
                                         while True:
@@ -662,18 +453,19 @@ while True:
 #_________________________________________________________________________________________________
                     elif option == 4:
                         while True:
-                            yes_no = input("Are You Sure You Want To Exit This Beautiful System(yes/no)?\n").capitalize().split()
-                            if yes_no == "Yes": 
+                            yes_no2 = input("Are You Sure You Want To Exit This Beautiful System(yes/no)?\n").capitalize().strip()
+                            if yes_no2 == "Yes": 
                                 print("Thank you for visiting my code!")
-                                print("Exiting...")
+                                print("Exiting...\n")
                                 Condition_while_exit_menu_1 = True
                                 break
-                            elif yes_no == "No":
+                            elif yes_no2 == "No":
                                 print("Thanks for staying!")
                                 break
                             else:
                                 print("Only Avaliable Options Are Yes And No!")
                         if Condition_while_exit_menu_1:
+                            Condition_while_exit_menu_1 = False
                             break
                     else:
                         print("Only Avaliable Options Are b/w 1 to 4.")
