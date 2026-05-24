@@ -16,33 +16,33 @@ def main_main_function(Name):
                                 option1 = int(option1)
 #-------------------------------------------------------------------------------------------------
                                 if option1 == 1:
-                                    main_menu3(option1,Name)
-                                    if main_menu3:
+                                    result = main_menu3(option1,Name)
+                                    if result:
                                         break
 #-------------------------------------------------------------------------------------------------
                                 elif option1 == 2:
-                                    main_menu3(option1,Name)
-                                    if main_menu3:
+                                    result = main_menu3(option1,Name)
+                                    if result:
                                         break
 #-------------------------------------------------------------------------------------------------
                                 elif option1 == 3:
-                                    main_menu3(option1,Name)
-                                    if main_menu3:
+                                    result = main_menu3(option1,Name)
+                                    if result:
                                         break
 #-------------------------------------------------------------------------------------------------
                                 elif option1 == 4:
-                                    main_menu3(option1,Name)
-                                    if main_menu3:
+                                    result = main_menu3(option1,Name)
+                                    if result:
                                         break
 #-------------------------------------------------------------------------------------------------
                                 elif option1 == 5:
-                                    main_menu3(option1,Name)
-                                    if main_menu3:
+                                    result = main_menu3(option1,Name)
+                                    if result:
                                         break
 #-------------------------------------------------------------------------------------------------
                                 elif option1 == 6:
-                                    main_menu3(option1,Name)
-                                    if main_menu3:
+                                    result = main_menu3(option1,Name)
+                                    if result:
                                         break
 #-------------------------------------------------------------------------------------------------
                                 elif option1 == 7:
@@ -221,19 +221,29 @@ def main_menu3(option1, Name):
             option2 = int(option2)
             if option2 in list_menu_3a:
                 if option2 == 1:
-                    menu4(option1,option2)
-                    if menu4:
+                    result = menu4(option1,option2)
+                    if result:
                         list_menu_3b_condition = True
                 elif option2 == 2:
-                    menu4(option1,option2)
+                    result = menu4(option1,option2)
+                    if result:
+                        list_menu_3b_condition = True
                 elif option2 == 3:
-                    menu4(option1,option2)
+                    result = menu4(option1,option2)
+                    if result:
+                        list_menu_3b_condition = True
                 elif option2 == 4:
-                    menu4(option1,option2)
+                    result = menu4(option1,option2)
+                    if result:
+                        list_menu_3b_condition = True
                 elif option2 == 5:
-                    menu4(option1,option2)
+                    result = menu4(option1,option2)
+                    if result:
+                        list_menu_3b_condition = True
                 elif option2 == 6:
-                    menu4(option1,option2)
+                    result = menu4(option1,option2)
+                    if result:
+                        list_menu_3b_condition = True
             elif option2 in list_menu_3b:
                 print("Exiting...")
                 list_menu_3b_condition = True
