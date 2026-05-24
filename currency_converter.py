@@ -1,4 +1,4 @@
-#Currency Converter
+#Currency Converter 
 def main_main_function(Name):
     while True:
         option = input("\n+-------------------------------------+\n| To Convert Currency     : Enter [1] |\n| To View Currency History: Enter [2] |\n| To Clear History        : Enter [3] |\n| To Exit                 : Enter [4] |\n+-------------------------------------+\n")
@@ -62,9 +62,6 @@ def main_main_function(Name):
                                         break
                                 else:
                                     print("Invalid Input!")
-                                if Condition_while_exit_menu_3:
-                                    Condition_while_exit_menu_3 = False
-                                    break
                         except:
                             print("Invalid Input! Error: Unknown Entry")
 #_________________________________________________________________________________________________
@@ -75,7 +72,7 @@ def main_main_function(Name):
                 elif option == 3:
                     while True:
                         User_name_delete = input("Enter the name you want to delete from database: ")
-                        if History[User_name_delete] in History:
+                        if User_name_delete in History:
                             yes_no = input(f"Do you want to Delete the database of {User_name_delete}(yes/no)?").capitalize().strip()
                             if yes_no == "Yes":
                                 History.pop(User_name_delete, "Error: 411!")
@@ -207,12 +204,11 @@ def User_selected_choice(a,b):
             User_selected_choice2 = "Chinese Yuans"
     return User_selected_choice1, User_selected_choice2
 def main_menu3(option1, Name):
-    Condition_while_exit_menu_3 = False
     list_menu_3b_condition  = False
     list_menu_3a = (1,2,3,4,5,6)
     list_menu_3b = (7,)
     def menu3():
-        nonlocal option1, list_menu_3a, Condition_while_exit_menu_3, list_menu_3b, list_menu_3b_condition, Name
+        nonlocal option1, list_menu_3a, list_menu_3b, list_menu_3b_condition, Name
         list_menu_3b_condition = False
         print("Select the currency you want to convert into!")
         image()
