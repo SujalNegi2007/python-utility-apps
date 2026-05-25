@@ -9,4 +9,4 @@ Python utility tools and CLI applications built while learning.
 - Calculator — perform basic and advanced math operations with history tracking
 - Password Generator — built secure passwords dynamically by choosing characters, setting length of password by our choice, and tracks password history.
 - Currency Converter — used in converting currency from one mode to diff. mode(Latest Update: day 8) 
-- Multi Fuction Calculator (In Complete)
+- Multi Fuction Calculator (Latest Update: Day 9)
