@@ -19,16 +19,20 @@ def check_int(input_main_menu):
         print("Invalid Input! Error: Wrote something that is not a number!")
         return None , False
 #_______________________________________________________________________
-def main_menu(first_name):
+def main_menu():
     window()
-    input_main_menu = user_input_main_menu()
-    checking, is_right = check_int(input_main_menu)
+    a = None
+    checking, is_right = check_int(user_input_main_menu())
     if is_right:
-        front_menu(checking,first_name)
+        a = front_menu(checking)
+        if a:
+            return True
     else:
         print("Invalid Input!")
+    if a:
+        return True
 #_______________________________________________________________________
-def front_menu(checking,first_name):
+def front_menu(checking):
     if checking == 1:
         output_front_menu = user_input_front_menu()
         sum_input(*output_front_menu)
@@ -68,7 +72,7 @@ def front_menu(checking,first_name):
         print("History Cleared!")
     elif checking == 13:
         print("Exiting...")
-        return
+        return True
 #_______________________________________________________________________
 def user_input_front_menu():
     input_front_menu = input("Enter the numbers seperated by [,]: ").split(",")
@@ -76,10 +80,6 @@ def user_input_front_menu():
     for i in range(len(input_front_menu)):
         output_front_menu.append(int(input_front_menu[i]))
     return output_front_menu
-#_______________________________________________________________________
-def user_input_main_menu():
-    input_main_menu = input("Enter the Number where you want to go: ")
-    return input_main_menu
 #_______________________________________________________________________
 def sum_input(*output_front_menu):
     total_sum = sum(output_front_menu)
@@ -165,11 +165,12 @@ def name():
     return first_name
 #----------------------------------------------------------------------
 History = {}
+first_name = name()
+if first_name not in History:
+    History[first_name] = []
+else:
+    print(f"Welcome back {first_name}!")
 while True:
-    first_name = name()
-    if first_name not in History:
-        History[first_name] = []
-        main_menu(first_name)
-    else:
-        print(f"Welcome back {first_name}!")
-        main_menu(first_name)
+    a = main_menu()
+    if a:
+        break
