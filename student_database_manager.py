@@ -2,7 +2,7 @@ import csv
 import os
 import pandas as pd
 if not os.path.exists("database.csv"):
-    f = open("database.csv","w")
+    f = open("database.csv","w",newline = "")
     obj = csv.writer(f)
     obj.writerow(["name", "marks", "subject"])
     f.close()
@@ -17,7 +17,11 @@ def asking():
     full_name = input("Enter the Name of the Student: ").capitalize().strip()
     a = full_name.split(" ")
     name = a[0]
-    marks = input("Enter the Marks of the Student: ")
+    while True:
+        marks = input("Enter the Marks of the Student: ")
+        if marks.isdigit():
+            break
+        print("Enter the valid marks!")
     subject = input("Enter the Subject of the Student: ").capitalize().strip()
     b = [name, marks, subject]
     return b
@@ -72,33 +76,44 @@ def adding_to_database():
 def option_6():
     try:
         db = pd.read_csv('database.csv')
-        print(db)
-    except:
-        print("Error: 100. File could be empty!")
+        if not db.empty:
+            print(db)
+        else:
+            print("There is no data present!")
+    except Exception as e:
+        print(f"Error: {e}!")
 def option_5():
     try:
         db = pd.read_csv('database.csv')
-        print(db.head())
-    except:
-        print("Error: 100. File could be empty!")
+        if not db.empty:
+            print(db.head())
+        else:
+            print("There is no data present!")
+    except Exception as e:
+        print(f"Error: {e}!")
 def option_2():
     try:
         db = pd.read_csv('database.csv')
-        print(db['marks'].mean())
-    except:
-        print("Error: 100. File could be empty!")
+        db['marks'] = pd.to_numeric(db['marks'],errors = "coerce")
+        print(db.groupby('subject')['marks'].mean())
+    except Exception as e:
+        print(f"Error: {e}!")
 def option_3():
     try:
         db = pd.read_csv('database.csv')
-        print(db.loc[db['marks'].idxmax()])
-    except:
-        print("Error: 100. File could be empty!")
+        db['marks'] = pd.to_numeric(db['marks'],errors = "coerce")
+        clean_db = db.dropna(subset=['marks'])
+        print(clean_db.loc[clean_db['marks'].idxmax()])
+    except Exception as e:
+        print(f"Error: {e}!")
 def option_4():
     try:
         db = pd.read_csv('database.csv')
-        print(db.loc[db['marks'].idxmin()])
-    except:
-        print("Error: 100. File could be empty!")
+        db["marks"] = pd.to_numeric(db["marks"],errors = "coerce")
+        clean_db = db.dropna(subset=['marks'])
+        print(clean_db.loc[clean_db['marks'].idxmin()])
+    except Exception as e:
+        print(f"Error: {e}!")
 while True:
     window()
     a = assigning_digit()
