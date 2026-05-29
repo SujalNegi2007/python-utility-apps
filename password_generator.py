@@ -1,10 +1,15 @@
 # Password Generator
 import random
 import string
+import os
+from datetime import datetime
 print("Welcome to the password Generator!")
 History = []
 #-------------------------------------------------------------------------------------------
 while True:
+    if not os.path.exists("database.txt"):
+        with open("database.txt","a") as f:
+            pass
     try:
         menu = int(input("\n+--------------------------------------+\n| To Generate Password     : Enter [1] |\n| To View Password History : Enter [2] |\n| To Exit                  : Enter [3] |\n+--------------------------------------+\n"))
 #-------------------------------------------------------------------------------------------
@@ -72,6 +77,8 @@ while True:
                         password = "".join(characters)
                         History.append(password)
                         print(f"Your password is {password}.")
+                        with open("database.txt","a") as f:
+                            f.write(f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}], User created the password: [{password}]\n")
                     else:
                         print("You didn't choose any options to make password! The password is not created!")
                 except:
@@ -84,8 +91,12 @@ while True:
             print("Presenting the password histories...")
             for i in History:
                 print(f"Password =>{i} ")
+            with open("database.txt","a") as f:
+                f.write(f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}], User checked avaliable passwords: {History}\n")
         elif menu == 3:
             print("Exiting...")
+            with open("database.txt","a") as f:
+                f.write(f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}], User exited the app.\n")
             break
         else:
             print("Invalid Input! Error: 002")
