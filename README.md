@@ -1,6 +1,6 @@
 # python-utility-apps
 
-Python utility tools and CLI applications built while learning python.
+Python utility tools and CLI applications built while learning.
 
 ## Apps
 - Grocery Manager — manage your grocery list with add, remove, sort and search
